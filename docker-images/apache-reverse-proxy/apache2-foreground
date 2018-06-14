@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -e 
 
 #Add Setup for RES lab
@@ -9,6 +8,7 @@ echo "Dynamic app URL: $DYNAMIC_APP"
 
 php /var/apache2/templates/config-template.php > '/etc/apache2/sites-available/001-reverse-proxy.conf' 
 
+# Apache gets grumpy about PID files pre-existng
 rm -f /var/run/apache2/apache2.pid
 
-exec apache2 -DFOREGROUND "$@"
+exec apache2 -DFOREGROUND 
